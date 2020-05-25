@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Wafers.Core
 {
@@ -57,6 +58,7 @@ namespace Wafers.Core
         public string Help()
         {
             return  "exit - Wafersを終了\n" +
+                    "txtread - 指定したパスでテキストを表示\n" +
                     "version - バージョン情報を表示";
         }
 
@@ -75,22 +77,46 @@ namespace Wafers.Core
         /// <returns></returns>
         public string Pugyaa()
         {
-            return  "　　　　ｍ9\n" +
-                    "　　　　 ﾉ\n" +
-                    "ﾌﾟｷﾞｬｰ (^Д^)\n" +
-                    "　　　　( (9ｍ\n" +
-                    "　　　　<　＼\n" +
-                    "\n\n" +
-                    "　 　 9ｍ\n" +
-                    "　　　 ＼＼\n" +
-                    "　　　∧∧｜\n" +
-                    "　　 (^Д^)　ﾌﾟｷﾞｬｰ\n" +
-                    "　　 /　　ヽ\n" +
-                    "　 〈〈)　 |　 ｍ9\n" +
-                    "　　 ＼ｍ9ノ　　ﾉ\n" +
-                    "　　／／＼＼　(^Д^)\n" +
-                    "`_／／　／／　 ( (9ｍ\n" +
-                    "(＿ﾉ　 (＿)　　<　＼";
+            return  @"　　　　ｍ9
+                    　　　　 ﾉ
+                    ﾌﾟｷﾞｬｰ (^Д^)
+                    　　　　( (9ｍ
+                    　　　　<　＼
+                    
+                    　 　 9ｍ
+                    　　　 ＼＼
+                    　　　∧∧｜
+                    　　 (^Д^)　ﾌﾟｷﾞｬｰ
+                    　　 /　　ヽ
+                    　 〈〈)　 |　 ｍ9
+                    　　 ＼ｍ9ノ　　ﾉ
+                    　　／／＼＼　(^Д^)
+                    `_／／　／／　 ( (9ｍ
+                    (＿ﾉ　 (＿)　　<　＼";
+        }
+
+
+        /// <summary>
+        /// テキストファイルを読み込んで表示するコマンド
+        /// </summary>
+        public void Txtread(string path)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamReader sr = new StreamReader(@path, Encoding.GetEncoding("utf-8")))
+                {
+                    string text = sr.ReadToEnd();
+
+                    Console.WriteLine("----------\n");
+                    Console.WriteLine(text);
+                }
+            }
+            else
+            {
+                Console.WriteLine("ファイルが存在しません。");
+            }
+
+            
         }
     }
 }

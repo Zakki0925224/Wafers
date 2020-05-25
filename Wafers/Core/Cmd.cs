@@ -45,6 +45,22 @@ namespace Wafers.Core
                 Console.WriteLine(msg.Pugyaa());
             }
 
+
+            // テキスト読み込み
+            else if (entercmd == "txtread")
+            {
+                Console.Write("ファイルのパスを入力（\"/c\"でキャンセル）:");
+                string path = Console.ReadLine();
+                if (path == "/c")
+                {
+                    //何もせずに終了
+                }
+                else
+                {
+                    msg.Txtread(path);
+                }
+            }
+
             // 空白またはなにも入力されなかった場合
             else if (entercmd == "" || entercmd == " " || entercmd == "　")
             {
