@@ -61,6 +61,19 @@ namespace Wafers.Core
                 }
             }
 
+
+            //ユーザー名変更
+            else if (entercmd == "username change")
+            {
+                msg.Username_register();
+            }
+
+            //ユーザー名初期化
+            else if (entercmd == "username reset")
+            {
+                msg.Username_reset();
+            }
+
             // 空白またはなにも入力されなかった場合
             else if (entercmd == "" || entercmd == " " || entercmd == "　")
             {

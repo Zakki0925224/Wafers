@@ -59,6 +59,8 @@ namespace Wafers.Core
         {
             return  "exit - Wafersを終了\n" +
                     "txtread - 指定したパスでテキストを表示\n" +
+                    "username change - ユーザー名を変更\n"+
+                    "username reset - ユーザー名を初期化\n" +
                     "version - バージョン情報を表示";
         }
 
@@ -117,6 +119,42 @@ namespace Wafers.Core
             }
 
             
+        }
+
+
+        /// <summary>
+        /// ユーザー名を登録する
+        /// </summary>
+        public void Username_register()
+        {
+            while(true)
+            {
+                Console.Write("登録したいユーザー名を入力:");
+                string username = Console.ReadLine();
+
+                if (username == "" || username == " " || username == "　")
+                {
+                    Console.WriteLine("入力されたユーザー名は適用できません。");
+                }
+                else
+                {
+                    Properties.Settings.Default.Username = username;
+                    Properties.Settings.Default.Save();
+                    break;
+                }
+            }
+            
+        }
+
+
+        /// <summary>
+        /// ユーザー名を初期化
+        /// </summary>
+        public void Username_reset()
+        {
+            Properties.Settings.Default.Username = "";
+            Properties.Settings.Default.Save();
+            Console.WriteLine("ユーザー名の初期化が完了しました。");
         }
     }
 }

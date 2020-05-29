@@ -22,7 +22,13 @@ namespace Wafers.Core
 
             while (true)
             {
-                Console.Write("\n" + msg.AppTitle() + ">");
+                //ユーザー名が設定されていない場合、設定を促す
+                if (Properties.Settings.Default.Username == "")
+                {
+                    msg.Username_register();
+                }
+
+                Console.Write("\n" + Properties.Settings.Default.Username + "@" + msg.AppTitle() + ">");
 
                 // コマンドを読み取ってCmdクラスに渡す
                 string command = Console.ReadLine();
