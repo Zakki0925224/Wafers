@@ -28,7 +28,17 @@ namespace Wafers.Core
                     msg.Username_register();
                 }
 
-                Console.Write("\n" + Properties.Settings.Default.Username + "@" + msg.AppTitle() + ">");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("\n" + Properties.Settings.Default.Username + "@" + msg.AppTitle());
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(":");
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(Environment.CurrentDirectory);
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(">");
 
                 // コマンドを読み取ってCmdクラスに渡す
                 string command = Console.ReadLine();
