@@ -61,6 +61,7 @@ namespace Wafers.Core
                     "txtread - 指定したパスでテキストを表示\n" +
                     "username change - ユーザー名を変更\n"+
                     "username reset - ユーザー名を初期化\n" +
+                    "username show - 現在のユーザー名を取得\n" +
                     "version - バージョン情報を表示";
         }
 
@@ -155,6 +156,16 @@ namespace Wafers.Core
             Properties.Settings.Default.Username = "";
             Properties.Settings.Default.Save();
             Console.WriteLine("ユーザー名の初期化が完了しました。");
+        }
+
+        /// <summary>
+        /// ユーザー名を取得
+        /// </summary>
+        public string Username_show()
+        {
+            string name = Properties.Settings.Default.Username;
+
+            return name;
         }
     }
 }

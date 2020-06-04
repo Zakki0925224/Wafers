@@ -74,6 +74,12 @@ namespace Wafers.Core
                 msg.Username_reset();
             }
 
+            //ユーザー名取得
+            else if (entercmd == "username show")
+            {
+                Console.WriteLine(msg.Username_show());
+            }
+
             // 空白またはなにも入力されなかった場合
             else if (entercmd == "" || entercmd == " " || entercmd == "　")
             {
