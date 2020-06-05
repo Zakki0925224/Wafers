@@ -19,9 +19,44 @@ namespace Wafers.Core
         public void Command(string entercmd)
         {
             Msg msg = new Msg();
+            string[] args = entercmd.Split(' ');
+
+
+            //ユーザー名コマンド
+            if (entercmd == "username")
+            {
+                Console.WriteLine(msg.Username_help());
+            }
+
+            else if (args[0] == "username")
+            {
+                //ユーザー名変更
+                if (args[1] == "change")
+                {
+                    msg.Username_register();
+                }
+
+                //ユーザー名初期化
+                else if (args[1] == "reset")
+                {
+                    msg.Username_reset();
+                }
+
+                //ユーザー名取得
+                else if (args[1] == "show")
+                {
+                    Console.WriteLine(msg.Username_show());
+                }
+                else
+                {
+                    //それ以外（ヘルプ表示）
+                    Console.WriteLine(msg.Username_help());
+                }
+            }
+
 
             // バージョン情報表示
-            if (entercmd == "version")
+            else if (entercmd == "version")
             {
                 Console.WriteLine(msg.Ver());
                 
@@ -61,23 +96,10 @@ namespace Wafers.Core
                 }
             }
 
-
-            //ユーザー名変更
-            else if (entercmd == "username change")
+            //カイル君
+            else if (entercmd == "Dolphin")
             {
-                msg.Username_register();
-            }
-
-            //ユーザー名初期化
-            else if (entercmd == "username reset")
-            {
-                msg.Username_reset();
-            }
-
-            //ユーザー名取得
-            else if (entercmd == "username show")
-            {
-                Console.WriteLine(msg.Username_show());
+                Console.WriteLine(msg.Dolphin());
             }
 
             // 空白またはなにも入力されなかった場合

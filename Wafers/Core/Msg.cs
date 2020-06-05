@@ -167,5 +167,23 @@ namespace Wafers.Core
 
             return name;
         }
+
+        /// <summary>
+        /// ユーザー名コマンドヘルプ
+        /// </summary>
+        /// <returns></returns>
+        public string Username_help()
+        {
+            return "引数が指定されてないか、入力された引数は対応していません。コマンドは\"help\"または\"?\"を入力して確認できます。";
+        }
+
+        /// <summary>
+        /// カイル君
+        /// </summary>
+        /// <returns></returns>
+        public string Dolphin()
+        {
+            return "　　　＿_／|_\n　＿／　　　 ＼\n〈―― ●　　　＼\n　￣＼_＿＿　　　ヽ\n　　 /＞―｜ヽ―-､|\n　　　　　 ＼|￣＼|_\n　　　　　　　　(人_)";
+        }
     }
 }
