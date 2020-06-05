@@ -10,12 +10,12 @@ using System.IO;
 namespace Wafers.Core
 {
     /// <summary>
-    /// メッセージ（システムメッセージ）管理クラス
+    /// メッセージ（コマンドの内部処理）管理クラス
     /// </summary>
     class Msg
     {
         /// <summary>
-        /// バージョン表示）
+        /// バージョン表示
         /// </summary>
         /// <returns></returns>
         public string Ver()

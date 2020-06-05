@@ -22,12 +22,13 @@ namespace Wafers.Core
             string[] args = entercmd.Split(' ');
 
 
-            //ユーザー名コマンド
+            //ユーザー名コマンド（引数なし）
             if (entercmd == "username")
             {
                 Console.WriteLine(msg.Username_help());
             }
 
+            //ユーザー名コマンド（引数あり）
             else if (args[0] == "username")
             {
                 //ユーザー名変更
@@ -47,9 +48,9 @@ namespace Wafers.Core
                 {
                     Console.WriteLine(msg.Username_show());
                 }
+                //それ以外（ヘルプ表示）
                 else
                 {
-                    //それ以外（ヘルプ表示）
                     Console.WriteLine(msg.Username_help());
                 }
             }
