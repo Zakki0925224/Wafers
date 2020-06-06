@@ -55,6 +55,22 @@ namespace Wafers.Core
                 }
             }
 
+            // DOSコマンド
+            else if (entercmd == "dos")
+            {
+                Console.WriteLine(msg.Dos_help());
+            }
+            else if (args[0] == "dos")
+            {
+                string[] doscmd = new string[args.Length-1];
+                string cmd;
+
+                Array.Copy(args, 1, doscmd, 0, args.Length - 1);
+                cmd = string.Join(" ", doscmd);
+
+                msg.Dos(cmd);
+            }
+
 
             // バージョン情報表示
             else if (entercmd == "version")
@@ -98,7 +114,7 @@ namespace Wafers.Core
             }
 
             //カイル君
-            else if (entercmd == "Dolphin")
+            else if (entercmd == "dolphin")
             {
                 Console.WriteLine(msg.Dolphin());
             }

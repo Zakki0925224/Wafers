@@ -57,7 +57,8 @@ namespace Wafers.Core
         /// <returns></returns>
         public string Help()
         {
-            return  "exit - Wafersを終了\n" +
+            return  "dos [DOSコマンド] - 入力したDOSコマンドを実行\n" +
+                    "exit - Wafersを終了\n" +
                     "txtread - 指定したパスでテキストを表示\n" +
                     "username change - ユーザー名を変更\n"+
                     "username reset - ユーザー名を初期化\n" +
@@ -184,6 +185,70 @@ namespace Wafers.Core
         public string Dolphin()
         {
             return "　　　＿_／|_\n　＿／　　　 ＼\n〈―― ●　　　＼\n　￣＼_＿＿　　　ヽ\n　　 /＞―｜ヽ―-､|\n　　　　　 ＼|￣＼|_\n　　　　　　　　(人_)";
+        }
+
+        /// <summary>
+        /// dosコマンドを実行
+        /// 結果を返す
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public void Dos(string cmd)
+        {
+            //Processオブジェクトを作成
+            Process p = new Process();
+            //出力とエラーをストリームに書き込むようにする
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+            //OutputDataReceivedとErrorDataReceivedイベントハンドラを追加
+            p.OutputDataReceived += p_OutputDataReceived;
+            p.ErrorDataReceived += p_ErrorDataReceived;
+
+            p.StartInfo.FileName = Environment.GetEnvironmentVariable("ComSpec");
+            p.StartInfo.RedirectStandardInput = false;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.Arguments = @"/c "+cmd;
+
+            //起動
+            p.Start();
+
+            //非同期で出力とエラーの読み取りを開始
+            p.BeginOutputReadLine();
+            p.BeginErrorReadLine();
+
+            p.WaitForExit();
+            p.Close();
+            
+        }
+
+        /// <summary>
+        /// OutoutDataReceivedイベントハンドラ
+        /// 行が出力されるたびに呼び出される
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void p_OutputDataReceived(object sender,DataReceivedEventArgs e)
+        {
+            //出力された文字列を表示する
+            Console.WriteLine(e.Data);
+        }
+
+        /// <summary>
+        /// ErrorDataReceivedイベントハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void p_ErrorDataReceived(object sender,DataReceivedEventArgs e)
+        {
+            //エラー出力された文字列を表示する
+            Console.WriteLine(e.Data);
+
+        }
+
+        public string Dos_help()
+        {
+            return "DOSコマンドを入力してください。";
         }
     }
 }
