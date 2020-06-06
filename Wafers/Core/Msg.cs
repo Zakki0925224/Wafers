@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Wafers.Web;
 
 namespace Wafers.Core
 {
@@ -73,30 +74,6 @@ namespace Wafers.Core
         public void Exit()
         {
             Environment.Exit(0);
-        }
-
-        /// <summary>
-        /// プギャーコマンド
-        /// </summary>
-        /// <returns></returns>
-        public string Pugyaa()
-        {
-            return  @"　　　　ｍ9
-                    　　　　 ﾉ
-                    ﾌﾟｷﾞｬｰ (^Д^)
-                    　　　　( (9ｍ
-                    　　　　<　＼
-                    
-                    　 　 9ｍ
-                    　　　 ＼＼
-                    　　　∧∧｜
-                    　　 (^Д^)　ﾌﾟｷﾞｬｰ
-                    　　 /　　ヽ
-                    　 〈〈)　 |　 ｍ9
-                    　　 ＼ｍ9ノ　　ﾉ
-                    　　／／＼＼　(^Д^)
-                    `_／／　／／　 ( (9ｍ
-                    (＿ﾉ　 (＿)　　<　＼";
         }
 
 
@@ -179,15 +156,6 @@ namespace Wafers.Core
         }
 
         /// <summary>
-        /// カイル君
-        /// </summary>
-        /// <returns></returns>
-        public string Dolphin()
-        {
-            return "　　　＿_／|_\n　＿／　　　 ＼\n〈―― ●　　　＼\n　￣＼_＿＿　　　ヽ\n　　 /＞―｜ヽ―-､|\n　　　　　 ＼|￣＼|_\n　　　　　　　　(人_)";
-        }
-
-        /// <summary>
         /// dosコマンドを実行
         /// 結果を返す
         /// </summary>
@@ -246,9 +214,34 @@ namespace Wafers.Core
 
         }
 
+        /// <summary>
+        /// DOSコマンドヘルプ
+        /// </summary>
+        /// <returns></returns>
         public string Dos_help()
         {
             return "DOSコマンドを入力してください。";
+        }
+
+        /// <summary>
+        /// サーバーヘルプ
+        /// </summary>
+        /// <returns></returns>
+        public string Server_help()
+        {
+            return  "使い方: server [引数]\n"+
+                    "-s - サーバーを開きます。";
+        }
+
+        /// <summary>
+        /// Webサーバー開始します
+        /// </summary>
+        public void Server_start()
+        {
+            string place = Properties.Settings.Default.Serverplace;
+
+            Server server = new Server();
+            server.Main(place);
         }
     }
 }

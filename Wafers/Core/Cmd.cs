@@ -91,13 +91,6 @@ namespace Wafers.Core
                 msg.Exit();
             }
 
-            // プギャー（隠しコマンド）
-            else if (entercmd == "pugya-!")
-            {
-                Console.WriteLine(msg.Pugyaa());
-            }
-
-
             // テキスト読み込み
             else if (entercmd == "txtread")
             {
@@ -113,10 +106,18 @@ namespace Wafers.Core
                 }
             }
 
-            //カイル君
-            else if (entercmd == "dolphin")
+            // Webサーバー構築
+            else if (entercmd == "server")
             {
-                Console.WriteLine(msg.Dolphin());
+                Console.WriteLine(msg.Server_help());
+            }
+            else if (args[0] == "server")
+            {
+                // サーバースタート
+                if (args [1] == "-s")
+                {
+                    msg.Server_start();
+                }
             }
 
             // 空白またはなにも入力されなかった場合

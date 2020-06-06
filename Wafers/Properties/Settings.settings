@@ -5,5 +5,8 @@
     <Setting Name="Username" Type="System.String" Scope="User">
       <Value Profile="(Default)">user</Value>
     </Setting>
+    <Setting Name="Serverplace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\test\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
