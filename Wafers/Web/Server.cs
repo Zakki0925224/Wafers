@@ -5,11 +5,14 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
+using Wafers.Core;
 
 namespace Wafers.Web
 {
     class Server
     {
+
         /// <summary>
         /// サーバー実行メソッドの呼び出し
         /// </summary>
@@ -31,6 +34,7 @@ namespace Wafers.Web
         /// </summary>
         public void WebServer(string place, string port)
         {
+
             //ドキュメントルート(docroot)
             string docroot = place;
 
@@ -39,6 +43,7 @@ namespace Wafers.Web
 
             listener.Prefixes.Add(url);
             listener.Start();
+            
 
             while (true)
             {
@@ -69,6 +74,14 @@ namespace Wafers.Web
                 }
                 res.Close();
             }
+        }
+
+        /// <summary>
+        /// 実行中のサーバーのステータスを表示
+        /// </summary>
+        public void Status()
+        {
+
         }
     }
 }

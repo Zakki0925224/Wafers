@@ -62,7 +62,7 @@ namespace Wafers.Core
             }
             else if (args[0] == "dos")
             {
-                string[] doscmd = new string[args.Length-1];
+                string[] doscmd = new string[args.Length - 1];
                 string cmd;
 
                 Array.Copy(args, 1, doscmd, 0, args.Length - 1);
@@ -76,7 +76,7 @@ namespace Wafers.Core
             else if (entercmd == "version")
             {
                 Console.WriteLine(msg.Ver());
-                
+
             }
 
             // ヘルプ
@@ -113,10 +113,14 @@ namespace Wafers.Core
             }
             else if (args[0] == "server")
             {
-                // サーバースタート
-                if (args [1] == "-s")
+                // サーバー開始
+                if (args[1] == "-o")
                 {
-                    msg.Server_start();
+
+                    Task task = Task.Run(() =>
+                    {
+                        msg.Server_start();
+                    });
                 }
             }
 
