@@ -13,6 +13,7 @@ namespace Wafers.Web
     class Server
     {
 
+
         /// <summary>
         /// サーバー実行メソッドの呼び出し
         /// </summary>
@@ -35,7 +36,6 @@ namespace Wafers.Web
         /// </summary>
         public void WebServer(string place, string port)
         {
-
             //ドキュメントルート(docroot)
             string docroot = place;
 
@@ -49,6 +49,7 @@ namespace Wafers.Web
             listener.Start();
 
             WebServerLog("サーバーは\""+url+"\"で実行されています。ルートフォルダは\""+place+"\"です。");
+            WebServerLog("コンソールに\"-c\"を入力してサーバーを終了できます。");
             System.Diagnostics.Process.Start(url);
 
             while (true)
@@ -82,6 +83,31 @@ namespace Wafers.Web
                 }
 
                 res.Close();
+
+                // サーバー処理をしつつコマンド入力を待機
+                //Task task = Task.Run(() => {
+
+                //    while(true)
+                //    {
+                //        string key = Console.ReadLine().ToString();
+                //         終了コマンド
+                //        if (key == "-c")
+                //        {
+                //            listener.Close();
+                //            break;
+                //        }
+                //        else
+                //        {
+                //            WebServerLog("コマンドが見つかりませんでした。");
+                //        }
+                //    }
+                //});
+
+                var task = WebServerConsole(listener);
+                if (task.Result == 0)
+                {
+                    break;
+                }
             }
         }
 
@@ -95,6 +121,35 @@ namespace Wafers.Web
 
             Console.WriteLine("[{0}] {1}", time, message);
 
+        }
+
+
+        /// <summary>
+        /// サーバーコマンドの入力待ち
+        /// </summary>
+        /// <param name="listener"></param>
+        /// <returns></returns>
+        static async Task<int> WebServerConsole(HttpListener listener)
+        {
+            await Task.Run(() => {
+                while (true)
+                {
+                    string key = Console.ReadLine().ToString();
+                    // 終了コマンド
+                    if (key == "-c")
+                    {
+                        listener.Close();
+                        break;
+                    }
+                    else
+                    {
+                        Server server = new Server();
+                        server.WebServerLog("コマンドが見つかりませんでした。");
+                    }
+                }
+            });
+
+            return 0;
         }
     }
 }

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">user</Value>
     </Setting>
     <Setting Name="Serverplace" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\test</Value>
     </Setting>
     <Setting Name="Serveraddress" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
