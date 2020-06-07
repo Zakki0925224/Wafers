@@ -60,6 +60,7 @@ namespace Wafers.Core
         {
             return  "dos [DOSコマンド] - 入力したDOSコマンドを実行\n" +
                     "exit - Wafersを終了\n" +
+                    "server [引数] - サーバー処理を実行\n" +
                     "txtread - 指定したパスでテキストを表示\n" +
                     "username change - ユーザー名を変更\n"+
                     "username reset - ユーザー名を初期化\n" +
@@ -229,8 +230,10 @@ namespace Wafers.Core
         /// <returns></returns>
         public string Server_help()
         {
-            return  "使い方: server [引数]\n"+
-                    "-s - サーバーを開きます。";
+            return "使い方: server [引数]\n" +
+                    "-o - サーバーを開きます。\n" +
+                    "-a - 設定されているアドレスを表示します。\n" +
+                    "-p - 設定されているサーバーディレクトリを表示します。";
         }
 
         /// <summary>
@@ -242,6 +245,22 @@ namespace Wafers.Core
 
             Server server = new Server();
             server.Main(place);
+        }
+
+        /// <summary>
+        /// サーバーアドレスを返します
+        /// </summary>
+        /// <returns></returns>
+        public string Server_add()
+        {
+            string address = Properties.Settings.Default.Serveraddress;
+            return address;
+        }
+
+        public string Server_dir()
+        {
+            string dir = Properties.Settings.Default.Serverplace;
+            return dir;
         }
     }
 }

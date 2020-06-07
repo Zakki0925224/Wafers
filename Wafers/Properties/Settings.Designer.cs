@@ -37,13 +37,25 @@ namespace Wafers.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\test\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Serverplace {
             get {
                 return ((string)(this["Serverplace"]));
             }
             set {
                 this["Serverplace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Serveraddress {
+            get {
+                return ((string)(this["Serveraddress"]));
+            }
+            set {
+                this["Serveraddress"] = value;
             }
         }
     }

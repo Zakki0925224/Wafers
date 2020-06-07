@@ -25,7 +25,8 @@ namespace Wafers.Web
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                WebServerLog("Error: " + ex.Message);
+                WebServerLog("サーバーは終了しました。");
             }
         }
 
@@ -41,9 +42,14 @@ namespace Wafers.Web
             HttpListener listener = new HttpListener();
             string url = "http://127.0.0.1:" + port + "/";
 
+            // URLを設定に保存
+            Properties.Settings.Default.Serveraddress = url;
+
             listener.Prefixes.Add(url);
             listener.Start();
-            
+
+            WebServerLog("サーバーは\""+url+"\"で実行されています。ルートフォルダは\""+place+"\"です。");
+            System.Diagnostics.Process.Start(url);
 
             while (true)
             {
@@ -65,22 +71,29 @@ namespace Wafers.Web
                     res.StatusCode = 200;
                     byte[] content = File.ReadAllBytes(path);
                     res.OutputStream.Write(content, 0, content.Length);
+                    WebServerLog("\""+path+"\"は正常に処理されました。");
                 }
                 catch (Exception ex)
                 {
                     res.StatusCode = 500;
                     byte[] content = Encoding.Default.GetBytes(ex.Message);
                     res.OutputStream.Write(content, 0, content.Length);
+                    WebServerLog(ex.Message);
                 }
+
                 res.Close();
             }
         }
 
         /// <summary>
-        /// 実行中のサーバーのステータスを表示
+        /// 実行中のサーバーのログを表示
         /// </summary>
-        public void Status()
+        public void WebServerLog(string message)
         {
+            DateTime dt = DateTime.Now;
+            string time = dt.ToString("HH:mm:ss");
+
+            Console.WriteLine("[{0}] {1}", time, message);
 
         }
     }

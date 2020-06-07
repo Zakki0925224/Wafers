@@ -116,11 +116,21 @@ namespace Wafers.Core
                 // サーバー開始
                 if (args[1] == "-o")
                 {
-
-                    Task task = Task.Run(() =>
-                    {
-                        msg.Server_start();
-                    });
+                    msg.Server_start();
+                }
+                // アドレス表示
+                else if (args[1] == "-a")
+                {
+                    Console.WriteLine(msg.Server_add());
+                }
+                // サーバーディレクトリ表示
+                else if (args[1] == "-p")
+                {
+                    Console.WriteLine(msg.Server_dir());
+                }
+                else
+                {
+                    Console.WriteLine(msg.Server_help());
                 }
             }
 
