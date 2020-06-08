@@ -61,10 +61,8 @@ namespace Wafers.Core
             return  "dos [DOSコマンド] - 入力したDOSコマンドを実行\n" +
                     "exit - Wafersを終了\n" +
                     "server [引数] - サーバー処理を実行\n" +
-                    "txtread - 指定したパスでテキストを表示\n" +
-                    "username change - ユーザー名を変更\n"+
-                    "username reset - ユーザー名を初期化\n" +
-                    "username show - 現在のユーザー名を取得\n" +
+                    "txtread [パス] - 指定したパスのテキストファイルを表示\n" +
+                    "username [引数] - ユーザー名処理を実行\n"+
                     "version - バージョン情報を表示";
         }
 
@@ -101,6 +99,14 @@ namespace Wafers.Core
             
         }
 
+        /// <summary>
+        /// txtreadヘルプ
+        /// </summary>
+        /// <returns></returns>
+        public string Txtread_help()
+        {
+            return "ファイルパスが指定されていません。詳細は\"help\"または\"?\"を入力して確認できます。";
+        }
 
         /// <summary>
         /// ユーザー名を登録する
@@ -132,7 +138,7 @@ namespace Wafers.Core
         /// </summary>
         public void Username_reset()
         {
-            Properties.Settings.Default.Username = "";
+            Properties.Settings.Default.Username = "user";
             Properties.Settings.Default.Save();
             Console.WriteLine("ユーザー名の初期化が完了しました。");
         }
@@ -153,7 +159,10 @@ namespace Wafers.Core
         /// <returns></returns>
         public string Username_help()
         {
-            return "引数が指定されてないか、入力された引数は対応していません。コマンドは\"help\"または\"?\"を入力して確認できます。";
+            return "使い方: username [引数]\n" +
+                    "-c - ユーザー名を変更します。\n" +
+                    "-r - ユーザー名を初期化します。\n" +
+                    "-s - 現在設定されているユーザー名を取得します。";
         }
 
         /// <summary>
@@ -231,8 +240,9 @@ namespace Wafers.Core
         public string Server_help()
         {
             return "使い方: server [引数]\n" +
-                    "-o - サーバーを開きます。\n" +
                     "-a - 設定されているアドレスを表示します。\n" +
+                    "-c - サーバーを終了します（サーバーコンソール内のみで有効）\n" +
+                    "-o - サーバーを開きます。\n" +
                     "-p - 設定されているサーバーディレクトリを表示します。";
         }
 
@@ -257,6 +267,10 @@ namespace Wafers.Core
             return address;
         }
 
+        /// <summary>
+        /// サーバーディレクトリを返します
+        /// </summary>
+        /// <returns></returns>
         public string Server_dir()
         {
             string dir = Properties.Settings.Default.Serverplace;

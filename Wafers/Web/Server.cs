@@ -27,7 +27,7 @@ namespace Wafers.Web
             catch (Exception ex)
             {
                 WebServerLog("Error: " + ex.Message);
-                WebServerLog("サーバーは終了しました。");
+                WebServerLog("サーバーを終了します。");
             }
         }
 
@@ -84,25 +84,6 @@ namespace Wafers.Web
 
                 res.Close();
 
-                // サーバー処理をしつつコマンド入力を待機
-                //Task task = Task.Run(() => {
-
-                //    while(true)
-                //    {
-                //        string key = Console.ReadLine().ToString();
-                //         終了コマンド
-                //        if (key == "-c")
-                //        {
-                //            listener.Close();
-                //            break;
-                //        }
-                //        else
-                //        {
-                //            WebServerLog("コマンドが見つかりませんでした。");
-                //        }
-                //    }
-                //});
-
                 var task = WebServerConsole(listener);
                 if (task.Result == 0)
                 {
@@ -134,16 +115,17 @@ namespace Wafers.Web
             await Task.Run(() => {
                 while (true)
                 {
+                    Server server = new Server();
                     string key = Console.ReadLine().ToString();
                     // 終了コマンド
                     if (key == "-c")
                     {
                         listener.Close();
+                        server.WebServerLog("サーバーを終了します。");
                         break;
                     }
                     else
                     {
-                        Server server = new Server();
                         server.WebServerLog("コマンドが見つかりませんでした。");
                     }
                 }

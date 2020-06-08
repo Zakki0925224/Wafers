@@ -32,19 +32,19 @@ namespace Wafers.Core
             else if (args[0] == "username")
             {
                 //ユーザー名変更
-                if (args[1] == "change")
+                if (args[1] == "-c")
                 {
                     msg.Username_register();
                 }
 
                 //ユーザー名初期化
-                else if (args[1] == "reset")
+                else if (args[1] == "-r")
                 {
                     msg.Username_reset();
                 }
 
                 //ユーザー名取得
-                else if (args[1] == "show")
+                else if (args[1] == "-s")
                 {
                     Console.WriteLine(msg.Username_show());
                 }
@@ -94,15 +94,18 @@ namespace Wafers.Core
             // テキスト読み込み
             else if (entercmd == "txtread")
             {
-                Console.Write("ファイルのパスを入力（\"/c\"でキャンセル）:");
-                string path = Console.ReadLine();
-                if (path == "/c")
+                Console.WriteLine(msg.Txtread_help());
+            }
+            else if (args[0] == "txtread")
+            {
+                if (args[1] != "")
                 {
-                    //何もせずに終了
+                    string path = args[1];
+                    msg.Txtread(path);
                 }
                 else
                 {
-                    msg.Txtread(path);
+                    Console.WriteLine(msg.Txtread_help());
                 }
             }
 
