@@ -59,6 +59,7 @@ namespace Wafers.Core
         public string Help()
         {
             return  "dos [DOSコマンド] - 入力したDOSコマンドを実行\n" +
+                    "exe [パス] - 指定したパス（プログラム、ディレクトリ、ファイルなど）を実行\n" +
                     "exit - Wafersを終了\n" +
                     "server [引数] - サーバー処理を実行\n" +
                     "txtread [パス] - 指定したパスのテキストファイルを表示\n" +
@@ -99,6 +100,7 @@ namespace Wafers.Core
             
         }
 
+
         /// <summary>
         /// txtreadヘルプ
         /// </summary>
@@ -107,6 +109,7 @@ namespace Wafers.Core
         {
             return "ファイルパスが指定されていません。詳細は\"help\"または\"?\"を入力して確認できます。";
         }
+
 
         /// <summary>
         /// ユーザー名を登録する
@@ -143,6 +146,7 @@ namespace Wafers.Core
             Console.WriteLine("ユーザー名の初期化が完了しました。");
         }
 
+
         /// <summary>
         /// ユーザー名を取得
         /// </summary>
@@ -152,6 +156,7 @@ namespace Wafers.Core
 
             return name;
         }
+
 
         /// <summary>
         /// ユーザー名コマンドヘルプ
@@ -164,6 +169,7 @@ namespace Wafers.Core
                     "-r - ユーザー名を初期化します。\n" +
                     "-s - 現在設定されているユーザー名を取得します。";
         }
+
 
         /// <summary>
         /// dosコマンドを実行
@@ -200,6 +206,7 @@ namespace Wafers.Core
             
         }
 
+
         /// <summary>
         /// OutoutDataReceivedイベントハンドラ
         /// 行が出力されるたびに呼び出される
@@ -211,6 +218,7 @@ namespace Wafers.Core
             //出力された文字列を表示する
             Console.WriteLine(e.Data);
         }
+
 
         /// <summary>
         /// ErrorDataReceivedイベントハンドラ
@@ -224,6 +232,7 @@ namespace Wafers.Core
 
         }
 
+
         /// <summary>
         /// DOSコマンドヘルプ
         /// </summary>
@@ -232,6 +241,7 @@ namespace Wafers.Core
         {
             return "DOSコマンドを入力してください。";
         }
+
 
         /// <summary>
         /// サーバーヘルプ
@@ -246,6 +256,7 @@ namespace Wafers.Core
                     "-p - 設定されているサーバーディレクトリを表示します。";
         }
 
+
         /// <summary>
         /// Webサーバー開始します
         /// </summary>
@@ -257,6 +268,7 @@ namespace Wafers.Core
             server.Main(place);
         }
 
+
         /// <summary>
         /// サーバーアドレスを返します
         /// </summary>
@@ -267,6 +279,7 @@ namespace Wafers.Core
             return address;
         }
 
+
         /// <summary>
         /// サーバーディレクトリを返します
         /// </summary>
@@ -275,6 +288,30 @@ namespace Wafers.Core
         {
             string dir = Properties.Settings.Default.Serverplace;
             return dir;
+        }
+
+        /// <summary>
+        /// exeコマンドヘルプ
+        /// </summary>
+        /// <returns></returns>
+        public string Exe_help()
+        {
+            return "パスが指定されていません。詳細は\"help\"または\"?\"を入力して確認できます。";
+        }
+        
+        public void Exe(string path)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = path;
+
+            try
+            {
+                Process p = Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

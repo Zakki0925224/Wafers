@@ -12,8 +12,6 @@ namespace Wafers.Web
 {
     class Server
     {
-
-
         /// <summary>
         /// サーバー実行メソッドの呼び出し
         /// </summary>
@@ -103,7 +101,6 @@ namespace Wafers.Web
             Console.WriteLine("[{0}] {1}", time, message);
 
         }
-
 
         /// <summary>
         /// サーバーコマンドの入力待ち

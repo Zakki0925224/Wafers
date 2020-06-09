@@ -137,6 +137,24 @@ namespace Wafers.Core
                 }
             }
 
+            // 実行ファイルの実行
+            else if (entercmd == "exe")
+            {
+                Console.WriteLine(msg.Exe_help());
+            }
+            else if (args[0] == "exe")
+            {
+                if (args[1] != "")
+                {
+                    string path = args[1];
+                    msg.Exe(path);
+                }
+                else
+                {
+                    Console.WriteLine(msg.Exe_help());
+                }
+            }
+
             // 空白またはなにも入力されなかった場合
             else if (entercmd == "" || entercmd == " " || entercmd == "　")
             {
