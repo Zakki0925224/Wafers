@@ -276,7 +276,15 @@ namespace Wafers.Core
         public string Server_add()
         {
             string address = Properties.Settings.Default.Serveraddress;
-            return address;
+
+            if (address != "")
+            {
+                return address;
+            }
+            else
+            {
+                return "アドレスは設定されていません。";
+            }
         }
 
 

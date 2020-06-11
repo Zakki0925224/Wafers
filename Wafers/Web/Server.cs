@@ -34,8 +34,6 @@ namespace Wafers.Web
         /// </summary>
         public void WebServer(string place, string port)
         {
-            //ドキュメントルート(docroot)
-            string docroot = place;
 
             HttpListener listener = new HttpListener();
             string url = "http://127.0.0.1:" + port + "/";
@@ -62,7 +60,7 @@ namespace Wafers.Web
                     urlPath = "/index.html";
 
                 //実際のローカルファイルパス
-                string path = docroot + urlPath.Replace("/", "\\");
+                string path = place + urlPath.Replace("/", "\\");
 
                 //ファイル内容を出力
                 try
